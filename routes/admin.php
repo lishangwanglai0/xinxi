@@ -51,6 +51,11 @@ Route::group(
             Route::post('/menus/discovery', 'MenuController@discovery')->name('menu.discovery');
             Route::post('/menus/batch', 'MenuController@batch')->name('menu.batch');
 
+            Route::get('/information_list', 'InformationController@index')->name('Information.index');
+            Route::get('/information/list', 'InformationController@infoList')->name('information.list');
+            Route::post('/information/save', 'InformationController@updateInfo')->name('information.save');
+            Route::get('/information/save_layout', 'InformationController@updateInfoPage')->name('information.save_layout');
+
             // 角色管理
             Route::get('/roles', 'RoleController@index')->name('role.index');
             Route::get('/roles/list', 'RoleController@list')->name('role.list');

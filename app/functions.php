@@ -164,3 +164,27 @@ function checkSensitiveWords(string $text, $type = 'join', $mode = null)
     }
     return array_merge($return, $result['exclusive']);
 }
+function return_jsonMessage($data,$code=200)
+{
+    $result=[];
+    if(!is_string($data) || $data==1){
+        $result['code']=$code;
+        $result['msg']='操作成功';
+        $result['data']=$data;
+         return $result;
+    }
+
+    $result['data']=$data;
+    $result['msg']='操作失败';
+    $result['code']=0;
+     return $result;
+}
+
+function return_message($res)
+{
+        $data['code']= $res ? 0 :1;
+        $data['reload']= $res;
+        $data['msg']= $res ? '操作成功' : '操作失败';
+        return $data;
+
+}

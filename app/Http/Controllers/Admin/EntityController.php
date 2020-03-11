@@ -37,7 +37,7 @@ class EntityController extends Controller
     {
         $this->breadcrumb[] = ['title' => '模型列表', 'url' => ''];
         return view('admin.entity.index', ['breadcrumb' => $this->breadcrumb]);
-    }
+}
 
     /**
      * 模型管理-模型列表数据接口

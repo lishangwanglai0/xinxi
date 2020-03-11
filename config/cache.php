@@ -72,6 +72,17 @@ return [
             'driver' => 'redis',
             'connection' => 'default',
         ],
+        's3' => [
+            'driver' => 's3',
+
+            // 驱动器其他配置...
+
+            'cache' => [
+                'store' => 'memcached',
+                'expire' => 600,
+                'prefix' => 'cache-prefix',
+            ],
+        ],
 
     ],
 

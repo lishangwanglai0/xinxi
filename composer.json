@@ -12,6 +12,7 @@
         "laravel/helpers": "^1.1",
         "laravel/tinker": "~1.0",
         "mews/captcha": "^3.0",
+        "overtrue/laravel-ueditor": "~1.0",
         "overtrue/socialite": "^2.0",
         "spatie/laravel-permission": "^3.0"
     },
