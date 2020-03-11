@@ -6,3 +6,4 @@ npm-debug.log
 yarn-error.log
 /.phpintel
 /composer.lock
+public/nginx.htaccess

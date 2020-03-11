@@ -56,9 +56,9 @@ class Information extends BaseModel
      * @author guoyang
      * @date 2020/3/9  19:19
      */
-    public function getInfoList($condition,$page,$limit)
+    public function getInfoList($condition,$where,$page,$limit)
     {
-       return  $this->page_query($condition,$limit,$page,'updated_at','*');
+       return  $this->page_query($condition,$where,$limit,$page,'updated_at','*');
 
     }
 
@@ -91,5 +91,40 @@ class Information extends BaseModel
     public function find($id)
     {
         return Information::query()->find($id);
+    }
+
+    public function page_query($condition,$where,$page_size,$page_index,$order,$field)
+    {
+
+        $count = $this->where($condition)->where('info_title','like','%'.$where.'%')->count();
+        if ($page_size == 0) {
+
+            $list = $this->select($field)
+                ->where($condition)
+                ->where('info_title','like','%'.$where.'%')
+                ->order($order)
+                ->get();
+            $page_count = 1;
+        } else {
+
+            $start_row = $page_size * ($page_index - 1);
+            $list = $this->select($field)
+                ->where('info_title','like','%'.$where.'%')
+                ->where($condition)
+                ->orderBy($order,'desc')
+                ->offset($start_row)
+                ->limit($page_size)
+                ->get();
+            if ($count % $page_size == 0) {
+                $page_count = $count / $page_size;
+            } else {
+                $page_count = (int) ($count / $page_size) + 1;
+            }
+        }
+        return array(
+            'data' => $list,
+            'count' => $count,
+            'page_count' => $page_count
+        );
     }
 }
