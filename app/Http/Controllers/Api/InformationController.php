@@ -72,7 +72,8 @@ class InformationController extends BaseController
         $page_index= !empty($page_index['page_index']) ? $page_index['page_index'] : 1;
         $page_amount= !empty($page_amount['page_amount']) ? $page_amount['page_amount'] : env('PAGE_LIMIT',18);
         $condition['info_status']=1;
-        $condition=array(array('info_audit',2),array('info_status',1));
+        $condition=array(array('info_audit','=',2),array('info_status','=',1),array('info_title','=','%'.$keyword['keyword'].'%'));
+        if(!empty($keyword['keyword']))         $condition=array(array('info_audit','=',2),array('info_status','=',1),array('info_title','=','%'.$keyword['keyword'].'%'));
         $result=(new Information())->getInfoList($condition,$page_index,$page_amount);
         return return_jsonMessage($result);
 
