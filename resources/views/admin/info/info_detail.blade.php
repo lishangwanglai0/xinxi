@@ -17,16 +17,16 @@
         <div class="layui-form-item" >
             <label class="layui-form-label">资源图片</label>
             @foreach($info_resource_image as $val)
-            <p class="imglogo-box" style="width: 66px">
-                <img id="img_logo" class="imglogo img-size" src="{{asset($val)}}">
+            <p class="imglogo-box" style="width: 66px;display:inline-block;margin-left:40px">
+                <img id="img_logo" class="imglogo img-size" style='width:100px;height:100px' src="{{asset($val)}}">
             </p>
             @endforeach
         </div>
         <div class="layui-form-item" >
             <label class="layui-form-label">合作方图片</label>
             @foreach($info_partner_image as $val)
-                <p class="imglogo-box" style="width: 66px">
-                    <img id="img_logo" class="imglogo img-size" src="{{asset($val)}}">
+                <p class="imglogo-box" style="width: 66px;display:inline-block;margin-left:40px">
+                    <img id="img_logo" class="imglogo img-size" style='width:100px;height:100px' src="{{asset($val)}}">
                 </p>
             @endforeach
         </div>
