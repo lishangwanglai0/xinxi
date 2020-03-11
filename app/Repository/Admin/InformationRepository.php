@@ -32,7 +32,19 @@ class InformationRepository
             $item->parentName = $item->pid == 0 ? '顶级菜单' : $item->parent->name;
             return $item;
         });
-
+        foreach ($data as &$val) {
+            switch ($val['info_audit']) {
+                case 1:
+                    $val['info_audit'] = '未审核';
+                    break;
+                case 2:
+                    $val['info_audit'] = '审核成功';
+                    break;
+                case 3:
+                    $val['info_audit'] = '审核失败';
+                    break;
+            }
+        }
         return [
             'code' => 0,
             'msg' => '',

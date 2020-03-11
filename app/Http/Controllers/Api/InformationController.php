@@ -67,11 +67,12 @@ class InformationController extends BaseController
     public function getPostMessageInfo(Request $request)
     {
         $keyword=$request->only('keyword');
-        $page_index=$request->only('page_index') ? $request->only('page_index') : 1;
-        $page_amount=$request->only('page_amount') ? $request->only('page_amount'): env('PAGE_LIMIT',18);
-        if(!empty($keyword)) $condition['info_title']=$keyword;
+        $page_index=$request->only('page_index');
+        $page_amount=$request->only('page_amount');
+        $page_index= !empty($page_index['page_index']) ? $page_index['page_index'] : 1;
+        $page_amount= !empty($page_amount['page_amount']) ? $page_amount['page_amount'] : env('PAGE_LIMIT',18);
         $condition['info_status']=1;
-        $condition['info_audit']=2;
+        $condition=array(array('info_audit',2),array('info_status',1));
         $result=(new Information())->getInfoList($condition,$page_index,$page_amount);
         return return_jsonMessage($result);
 
