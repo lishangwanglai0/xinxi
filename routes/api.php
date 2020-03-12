@@ -30,3 +30,4 @@ Route::post('/getinfo', 'InformationController@getPostMessageInfo');
 Route::post('/getinfodetail', 'InformationController@getdetailInfo');
 Route::post('/addRecruit', 'InformationController@addRecruitInfo');
 Route::post('/uploadimg', 'InformationController@uploadImg');
+Route::post('/node_api', 'NodeVerifyController@receptionNode');

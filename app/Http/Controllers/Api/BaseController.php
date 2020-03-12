@@ -19,5 +19,10 @@ class BaseController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
+    protected $redis;
+    public function __construct()
+    {
+        $this->redis=new \Redis();
+        $this->redis->connect('127.0.0.1');
+    }
 }

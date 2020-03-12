@@ -106,7 +106,7 @@ class InformationController extends BaseController
      */
     public function addRecruitInfo(Request $request)
     {
-        $postData=$request->only('r_designation','r_email','r_mobile','r_address','r_type');
+        $postData=$request->only('r_designation','commercial_name','r_mobile','project','r_type','r_province','r_city');
         $res=(new InformationRequest())->addRecruitRequest($postData);
         if($res===1){
             $postData['created_at']=time();

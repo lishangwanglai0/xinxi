@@ -54,6 +54,9 @@ class InformationRequest
 
     public function addRecruitRequest($postData)
     {
+        if(!in_array($postData['r_type'],[1,2,3])){
+            return '分类id错误';
+        }
         if(!$postData['r_designation']){
             return '名称不能为空';
         }
@@ -72,15 +75,12 @@ class InformationRequest
         if(!$postData['r_type']){
             return '分类id不能为空';
         }
-        if(!in_array($postData['r_type'],[1,2,3])){
-            return '分类id错误';
-        }
 
-        $res=(new Recruit())->where(['r_mobile'=>$postData['r_mobile']])->orwhere(['r_email'=>$postData['r_email']])->first();
+
+        $res=(new Recruit())->where(['r_mobile'=>$postData['r_mobile'],'r_type'=>$postData['r_type']])->first();
         if(!empty($res)){
             $data=json_decode( json_encode( $res),true);
             if($data['r_mobile']==$postData['r_mobile']) return '系统已收到此手机号的信息，请更换手机号';
-            if($data['r_email']==$postData['r_email']) return '系统已收到此邮箱的信息，请更换手机号';
         }
         return 1;
     }
